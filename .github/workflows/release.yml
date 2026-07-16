@@ -1,0 +1,127 @@
+name: Release
+
+# Publish to PyPI and cut a GitHub release on every version bump on main.
+#
+# A "version bump" is a push to main whose pyproject.toml version has no matching
+# v<version> tag yet. The tag is created here as part of the release, so an
+# unchanged version, a re-run, or a force-pushed history rebuild is a no-op and
+# never publishes twice.
+#
+# The publish is gated on the verify job -- ruff, mypy, and the offline test suite
+# on the same commit -- so a red build never reaches PyPI even if it lands on main.
+#
+# PyPI upload uses Trusted Publishing (OpenID Connect); no API token is stored.
+# One-time PyPI setup before the first release: add a trusted publisher for the
+# "torquests" project (owner SafwanLjd, repository torquests, workflow
+# release.yml, environment pypi). See https://docs.pypi.org/trusted-publishers/.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: Check for a version bump
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.detect.outputs.version }}
+      release: ${{ steps.detect.outputs.release }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Detect an untagged version
+        id: detect
+        run: |
+          version="$(grep -m1 -oP '^version = "\K[^"]+' pyproject.toml)"
+          if [ -z "$version" ]; then
+            echo "::error::could not read the version from pyproject.toml"
+            exit 1
+          fi
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          if git rev-parse -q --verify "refs/tags/v$version" >/dev/null; then
+            echo "v$version is already tagged; nothing to release."
+            echo "release=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "v$version is new; releasing."
+            echo "release=true" >> "$GITHUB_OUTPUT"
+          fi
+
+  verify:
+    name: Lint, type-check, and test before publishing
+    needs: check
+    if: needs.check.outputs.release == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          python-version: "3.12"
+
+      - name: Install project
+        run: |
+          uv venv
+          uv pip install -e ".[dev]"
+
+      - name: Lint (ruff check + format --check)
+        run: |
+          uv run ruff check src tests
+          uv run ruff format --check src tests
+
+      - name: Type check (mypy)
+        run: uv run mypy src
+
+      - name: Test (offline unit suite)
+        run: uv run pytest
+
+  release:
+    name: Publish to PyPI and cut a GitHub release
+    needs: [check, verify]
+    if: needs.check.outputs.release == 'true'
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      contents: write # create the tag and the release
+      id-token: write # Trusted Publishing to PyPI
+    env:
+      VERSION: ${{ needs.check.outputs.version }}
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.x"
+
+      - name: Build sdist and wheel
+        run: |
+          python -m pip install --upgrade build
+          python -m build
+
+      # Publish before tagging: if the upload fails, no tag is written, so the
+      # next push retries. skip-existing keeps a retry from failing on a file
+      # that already landed.
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          skip-existing: true
+
+      - name: Cut the GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "v$VERSION" ./dist/* \
+            --title "v$VERSION" \
+            --target "$GITHUB_SHA" \
+            --generate-notes

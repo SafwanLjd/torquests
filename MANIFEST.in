@@ -1,0 +1,7 @@
+graft tests
+graft examples
+
+include .github/CONTRIBUTING.md .github/SECURITY.md
+
+prune src/*.egg-info
+global-exclude __pycache__ *.py[cod]

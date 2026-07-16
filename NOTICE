@@ -1,0 +1,8 @@
+torquests
+Copyright 2026 Safwan Eljadi
+
+torquests as a whole is licensed under the GNU General Public License, version 3 or later; see LICENSE.
+
+This product includes software derived from torpy (https://github.com/torpyorg/torpy), Copyright 2019 James Brown, licensed under the Apache License, Version 2.0 (http://www.apache.org/licenses/LICENSE-2.0). The ntor handshake and relay-cell cryptography were ported and modernized from that project; the Apache-2.0 terms permit that material to be redistributed as part of a GPLv3 work, and this notice preserves the required attribution.
+
+This product is not produced by, endorsed by, or affiliated with The Tor Project. It carries no guarantee from The Tor Project about quality, suitability, or anonymity.

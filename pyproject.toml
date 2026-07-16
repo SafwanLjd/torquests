@@ -1,0 +1,126 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "torquests"
+version = "1.0.0"
+description = "A pure-Python Tor client with v3 onion-service support and a requests-compatible API"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "GPL-3.0-or-later"
+license-files = ["LICENSE", "NOTICE"]
+authors = [{ name = "Safwan Eljadi", email = "eljadisafwan@gmail.com" }]
+keywords = ["tor", "onion", "onion-service", "privacy", "anonymity", "requests", "socks", "hidden-service"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Topic :: Internet :: Proxy Servers",
+    "Topic :: Security",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Typing :: Typed",
+]
+dependencies = [
+    "requests>=2.32,<3",
+    # urllib3 2.x: response.py builds an HTTPHeaderDict, a top-level export only
+    # since 2.0. requests permits 1.x, so we pin it directly.
+    "urllib3>=2,<3",
+    # cryptography 40+: Ed25519/X25519 {private,public}_bytes_raw (added in 40.0)
+    # are the oldest APIs the crypto layer uses.
+    "cryptography>=40",
+    "PyNaCl>=1.6",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8",
+    "pytest-cov>=5",
+    "pytest-socket>=0.7",
+    "hypothesis>=6",
+    "pre-commit>=4",
+    "ruff==0.15.21",
+    "mypy==2.3.0",
+    "types-requests",
+]
+docs = [
+    # Floors, not current pins; CI resolves the latest compatible release.
+    "mkdocs-material>=9.5",
+    "mkdocstrings[python]>=0.24",
+]
+stealth = [
+    # curl_cffi reproduces a browser's TLS/JA3 and HTTP/2 fingerprint. The "tor"
+    # (Tor Browser) impersonation preset, which stealth mode uses by default, was
+    # added in 0.11 (Firefox support landed in 0.9).
+    "curl_cffi>=0.11",
+]
+
+[project.scripts]
+torquests = "torquests.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/SafwanLjd/torquests"
+Documentation = "https://safwanljd.github.io/torquests/"
+Repository = "https://github.com/SafwanLjd/torquests"
+Issues = "https://github.com/SafwanLjd/torquests/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+torquests = ["py.typed"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "W", "F", "I", "B", "C4", "UP", "SIM", "RUF"]
+# Protocol code has intentional byte-layout constants and struct formats.
+ignore = []
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["B011"]
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+disallow_untyped_defs = true
+files = ["src"]
+
+[[tool.mypy.overrides]]
+module = ["nacl.*"]
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+# curl_cffi is an optional extra; treat it as opaque whether or not it is
+# installed, so type-checking is identical with and without torquests[stealth].
+module = ["curl_cffi.*"]
+ignore_missing_imports = true
+follow_imports = "skip"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra -q --disable-socket --cov=torquests --cov-report=term-missing"
+markers = [
+    "integration: tests that require a live Tor network connection (deselected by default; run with --run-integration)",
+]
+
+[tool.coverage.run]
+branch = true
+source = ["src/torquests"]
+
+[tool.coverage.report]
+exclude_also = [
+    "if TYPE_CHECKING:",
+    "raise NotImplementedError",
+    "\\.\\.\\.",
+]
