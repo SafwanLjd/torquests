@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Report a security or anonymity issue
+    url: https://github.com/SafwanLjd/torquests/security/advisories/new
+    about: Report vulnerabilities privately through a GitHub Security Advisory. Do not open a public issue. See SECURITY.md for details.
