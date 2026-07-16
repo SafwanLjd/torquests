@@ -1,0 +1,97 @@
+site_name: torquests
+site_description: A pure-Python Tor client with v3 onion-service support and the requests API you already know.
+site_url: https://safwanljd.github.io/torquests/
+site_author: Safwan Eljadi
+copyright: Copyright &copy; 2026 Safwan Eljadi
+
+repo_url: https://github.com/SafwanLjd/torquests
+repo_name: SafwanLjd/torquests
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  logo: assets/torquests.png
+  favicon: assets/torquests.png
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - navigation.footer
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+  palette:
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: deep purple
+      accent: deep purple
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: deep purple
+      accent: deep purple
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+
+nav:
+  - Home: index.md
+  - Guide:
+      - Installation: installation.md
+      - Quickstart: quickstart.md
+      - Onion services: onion-services.md
+      - Circuit isolation: circuit-isolation.md
+      - Stealth mode: stealth.md
+      - Command line: cli.md
+      - SOCKS5 proxy: socks-proxy.md
+  - Safety: safety.md
+  - API reference: api.md
+
+plugins:
+  - search
+  - mkdocstrings:
+      default_handler: python
+      handlers:
+        python:
+          options:
+            show_root_heading: true
+            show_root_full_path: false
+            show_source: false
+            show_signature_annotations: true
+            docstring_section_style: table
+            members_order: source
+            merge_init_into_class: true
+            filters: ["!^_"]
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/SafwanLjd/torquests
+      name: torquests on GitHub
