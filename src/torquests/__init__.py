@@ -54,7 +54,7 @@ from .exceptions import TorError
 from .sessions import MixedSession, Session
 from .stealth import StealthTorAdapter, stealth_session
 
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 
 # A library should not configure logging; attach a no-op handler so emitting a
 # record without a configured handler does not warn.
