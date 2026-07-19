@@ -1,0 +1,3553 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A pure-Python Tor client with v3 onion-service support and the requests API you already know.">
+      
+      
+        <meta name="author" content="Safwan Eljadi">
+      
+      
+        <link rel="canonical" href="https://safwanljd.github.io/torquests/api/">
+      
+      
+        <link rel="prev" href="../safety/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/torquests.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>API reference - torquests</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#api-reference" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="torquests" class="md-header__button md-logo" aria-label="torquests" data-md-component="logo">
+      
+  <img src="../assets/torquests.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            torquests
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              API reference
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="deep-purple"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-purple"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SafwanLjd/torquests" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SafwanLjd/torquests
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../installation/" class="md-tabs__link">
+          
+  
+  
+  Guide
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../safety/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Safety
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  API reference
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="torquests" class="md-nav__button md-logo" aria-label="torquests" data-md-component="logo">
+      
+  <img src="../assets/torquests.png" alt="logo">
+
+    </a>
+    torquests
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SafwanLjd/torquests" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SafwanLjd/torquests
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guide
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guide
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quickstart
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../onion-services/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Onion services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../circuit-isolation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Circuit isolation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stealth/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Stealth mode
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Command line
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../socks-proxy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SOCKS5 proxy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../safety/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Safety
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API reference
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#functional-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Functional API
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#torquests.api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        api
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="api">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#torquests.api.request" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        request
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.api.get" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.api.head" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        head
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.api.post" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        post
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.api.put" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        put
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.api.patch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        patch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.api.delete" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        delete
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.api.options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        options
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.api.new_identity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        new_identity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.api.close" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        close
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sessions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sessions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#torquests.Session" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Session
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Session">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#torquests.Session.new_identity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        new_identity
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#torquests.MixedSession" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MixedSession
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MixedSession">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#torquests.MixedSession.send" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        send
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#client" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Client
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#torquests.TorClient" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TorClient
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="TorClient">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#torquests.TorClient.bootstrap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        bootstrap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.TorClient.new_identity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        new_identity
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#torquests.TorConfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TorConfig
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#transport" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Transport
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#torquests.TorAdapter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TorAdapter
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#torquests.IsolationPolicy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IsolationPolicy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stealth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stealth
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#torquests.stealth_session" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        stealth_session
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#torquests.StealthTorAdapter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        StealthTorAdapter
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exceptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exceptions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#torquests.exceptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        exceptions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="exceptions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#torquests.exceptions.TorError" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TorError
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.exceptions.TorBootstrapError" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TorBootstrapError
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.exceptions.ConsensusError" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ConsensusError
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.exceptions.DirectoryError" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DirectoryError
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.exceptions.ChannelError" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ChannelError
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.exceptions.LinkAuthError" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LinkAuthError
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.exceptions.CircuitError" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CircuitError
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.exceptions.CircuitBuildTimeout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CircuitBuildTimeout
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.exceptions.CircuitDestroyed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CircuitDestroyed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.exceptions.StreamError" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        StreamError
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.exceptions.StreamConnectError" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        StreamConnectError
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.exceptions.StreamConnectTimeout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        StreamConnectTimeout
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.exceptions.TorReadTimeout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TorReadTimeout
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.exceptions.TorTLSError" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TorTLSError
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.exceptions.OnionServiceError" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OnionServiceError
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.exceptions.DescriptorError" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DescriptorError
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.exceptions.DescriptorNotFound" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DescriptorNotFound
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.exceptions.IntroductionError" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IntroductionError
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.exceptions.RendezvousError" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RendezvousError
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.exceptions.OnionClientAuthRequired" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OnionClientAuthRequired
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.exceptions.InvalidOnionAddress" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        InvalidOnionAddress
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.exceptions.ProxyUnsupportedError" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ProxyUnsupportedError
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.exceptions.OnionRedirectError" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OnionRedirectError
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#functional-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Functional API
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#torquests.api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        api
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="api">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#torquests.api.request" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        request
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.api.get" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.api.head" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        head
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.api.post" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        post
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.api.put" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        put
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.api.patch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        patch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.api.delete" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        delete
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.api.options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        options
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.api.new_identity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        new_identity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.api.close" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        close
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sessions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sessions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#torquests.Session" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Session
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Session">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#torquests.Session.new_identity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        new_identity
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#torquests.MixedSession" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MixedSession
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MixedSession">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#torquests.MixedSession.send" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        send
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#client" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Client
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#torquests.TorClient" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TorClient
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="TorClient">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#torquests.TorClient.bootstrap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        bootstrap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.TorClient.new_identity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        new_identity
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#torquests.TorConfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TorConfig
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#transport" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Transport
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#torquests.TorAdapter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TorAdapter
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#torquests.IsolationPolicy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IsolationPolicy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stealth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stealth
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#torquests.stealth_session" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        stealth_session
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#torquests.StealthTorAdapter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        StealthTorAdapter
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exceptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exceptions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#torquests.exceptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        exceptions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="exceptions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#torquests.exceptions.TorError" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TorError
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.exceptions.TorBootstrapError" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TorBootstrapError
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.exceptions.ConsensusError" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ConsensusError
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.exceptions.DirectoryError" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DirectoryError
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.exceptions.ChannelError" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ChannelError
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.exceptions.LinkAuthError" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LinkAuthError
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.exceptions.CircuitError" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CircuitError
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.exceptions.CircuitBuildTimeout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CircuitBuildTimeout
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.exceptions.CircuitDestroyed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CircuitDestroyed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.exceptions.StreamError" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        StreamError
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.exceptions.StreamConnectError" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        StreamConnectError
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.exceptions.StreamConnectTimeout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        StreamConnectTimeout
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.exceptions.TorReadTimeout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TorReadTimeout
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.exceptions.TorTLSError" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TorTLSError
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.exceptions.OnionServiceError" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OnionServiceError
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.exceptions.DescriptorError" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DescriptorError
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.exceptions.DescriptorNotFound" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DescriptorNotFound
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.exceptions.IntroductionError" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IntroductionError
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.exceptions.RendezvousError" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RendezvousError
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.exceptions.OnionClientAuthRequired" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OnionClientAuthRequired
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.exceptions.InvalidOnionAddress" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        InvalidOnionAddress
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.exceptions.ProxyUnsupportedError" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ProxyUnsupportedError
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torquests.exceptions.OnionRedirectError" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OnionRedirectError
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="api-reference">API reference<a class="headerlink" href="#api-reference" title="Permanent link">&para;</a></h1>
+<p>Generated from the source. The names below are re-exported from the top-level <code>torquests</code>
+package.</p>
+<h2 id="functional-api">Functional API<a class="headerlink" href="#functional-api" title="Permanent link">&para;</a></h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<h2 id="torquests.api" class="doc doc-heading">
+            <code>api</code>
+
+
+<a href="#torquests.api" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents first">
+
+        <p>The module-level functional API, mirroring <code>requests</code>.</p>
+<p>Each verb runs through an ephemeral :class:<code>Session</code> over a process-global
+:class:<code>TorClient</code>. The client bootstraps a verified consensus of the Tor network
+on first use and is shared across calls, so repeated requests do not re-bootstrap.</p>
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="torquests.api.request" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">requests</span><span class="o">.</span><span class="n">Response</span></code>
+
+<a href="#torquests.api.request" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Send a request over Tor and return the response.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="torquests.api.get" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">requests</span><span class="o">.</span><span class="n">Response</span></code>
+
+<a href="#torquests.api.get" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Send a <code>GET</code> request over Tor. See :func:<code>request</code>.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="torquests.api.head" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">head</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">requests</span><span class="o">.</span><span class="n">Response</span></code>
+
+<a href="#torquests.api.head" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Send a <code>HEAD</code> request over Tor (redirects off by default). See :func:<code>request</code>.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="torquests.api.post" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">requests</span><span class="o">.</span><span class="n">Response</span></code>
+
+<a href="#torquests.api.post" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Send a <code>POST</code> request over Tor. See :func:<code>request</code>.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="torquests.api.put" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">put</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">requests</span><span class="o">.</span><span class="n">Response</span></code>
+
+<a href="#torquests.api.put" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Send a <code>PUT</code> request over Tor. See :func:<code>request</code>.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="torquests.api.patch" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">patch</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">requests</span><span class="o">.</span><span class="n">Response</span></code>
+
+<a href="#torquests.api.patch" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Send a <code>PATCH</code> request over Tor. See :func:<code>request</code>.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="torquests.api.delete" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">delete</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">requests</span><span class="o">.</span><span class="n">Response</span></code>
+
+<a href="#torquests.api.delete" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Send a <code>DELETE</code> request over Tor. See :func:<code>request</code>.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="torquests.api.options" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">options</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">requests</span><span class="o">.</span><span class="n">Response</span></code>
+
+<a href="#torquests.api.options" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Send an <code>OPTIONS</code> request over Tor. See :func:<code>request</code>.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="torquests.api.new_identity" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">new_identity</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
+
+<a href="#torquests.api.new_identity" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Rotate the global client's circuits, if it has been created.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="torquests.api.close" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">close</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
+
+<a href="#torquests.api.close" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Tear down the global client (mainly for tests and clean shutdown).</p>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="sessions">Sessions<a class="headerlink" href="#sessions" title="Permanent link">&para;</a></h2>
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="torquests.Session" class="doc doc-heading">
+              <code class="highlight language-python"><span class="n">Session</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">tor</span><span class="p">:</span> <span class="n">TorConnector</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">isolation</span><span class="p">:</span> <span class="n">IsolationPolicy</span> <span class="o">=</span> <span class="s1">&#39;host&#39;</span><span class="p">,</span> <span class="n">isolation_token</span><span class="p">:</span> <span class="nb">object</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">onion_auth</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span></code>
+
+<a href="#torquests.Session" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+    <div class="doc doc-contents first">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="requests.Session">Session</span></code></p>
+
+
+
+        <p>A <code>requests</code> session whose transport is Tor.</p>
+
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="torquests.Session.new_identity" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">new_identity</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
+
+<a href="#torquests.Session.new_identity" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Rotate circuits and clear session state so later requests are unlinkable.</p>
+<p>Drops the pooled circuits, so subsequent requests take fresh paths and
+exits, and clears the cookie jar, so a site cannot relink the new
+identity to the old one through a stored cookie.</p>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="torquests.MixedSession" class="doc doc-heading">
+              <code class="highlight language-python"><span class="n">MixedSession</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">tor</span><span class="p">:</span> <span class="n">TorConnector</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">isolation</span><span class="p">:</span> <span class="n">IsolationPolicy</span> <span class="o">=</span> <span class="s1">&#39;host&#39;</span><span class="p">,</span> <span class="n">isolation_token</span><span class="p">:</span> <span class="nb">object</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">onion_auth</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span></code>
+
+<a href="#torquests.MixedSession" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+    <div class="doc doc-contents first">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="Session(*, tor: TorConnector | None = None, isolation: IsolationPolicy = 'host', isolation_token: object | None = None, onion_auth: Mapping[str, bytes] | None = None) (torquests.sessions.Session)" href="#torquests.Session">Session</a></code></p>
+
+
+
+        <p>Routes <code>.onion</code> hosts through Tor and clearnet hosts directly.</p>
+<p>Clearnet requests leave over the real IP by design. So that an onion
+browsing session does not leak, a redirect from an onion service to a
+clearnet host is refused rather than followed directly (see :meth:<code>send</code>).</p>
+
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="torquests.MixedSession.send" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">send</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">requests</span><span class="o">.</span><span class="n">PreparedRequest</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">requests</span><span class="o">.</span><span class="n">Response</span></code>
+
+<a href="#torquests.MixedSession.send" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Send a request, refusing any onion-to-clearnet redirect hop.</p>
+<p><code>requests</code> follows redirects by re-entering <code>send</code> once per hop. This
+remembers the previous hop's host, so a hop that crosses from an onion
+service to a clearnet host is rejected with
+:class:<code>~torquests.exceptions.OnionRedirectError</code> before it can be fetched
+directly over the real IP. The check is per-hop, so it holds at any point
+in a redirect chain, not only when the chain began at an onion service.</p>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="client">Client<a class="headerlink" href="#client" title="Permanent link">&para;</a></h2>
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="torquests.TorClient" class="doc doc-heading">
+              <code class="highlight language-python"><span class="n">TorClient</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">TorConfig</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">path_provider</span><span class="p">:</span> <span class="n">PathProvider</span><span class="p">,</span> <span class="n">transport_factory</span><span class="p">:</span> <span class="n">TransportFactory</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">directory</span><span class="p">:</span> <span class="n">LiveDirectory</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">onion_auth</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span></code>
+
+<a href="#torquests.TorClient" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+    <div class="doc doc-contents first">
+
+
+
+        <p>Owns guard channels and a circuit pool; hands out connected streams.</p>
+
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="torquests.TorClient.bootstrap" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">bootstrap</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">TorConfig</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">60.0</span><span class="p">,</span> <span class="n">onion_auth</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TorClient</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-classmethod"><code>classmethod</code></small>
+  </span>
+
+<a href="#torquests.TorClient.bootstrap" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Build a client on a live, verified consensus of the Tor network.</p>
+<p>Fetches the consensus once per process (shared across clients) and selects
+real relays over TLS. The consensus and key-certificate fetches are not
+anonymized, but the subsequent per-circuit microdescriptor fetches are
+tunneled over Tor (see :meth:<code>_install_dir_tunnel</code>), and the traffic the
+client then carries always is. <code>onion_auth</code> maps an onion host to the
+x25519 client-authorization private key used to reach an authorized-only
+v3 service.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="torquests.TorClient.new_identity" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">new_identity</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
+
+<a href="#torquests.TorClient.new_identity" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Drop all pooled circuits so subsequent requests take fresh paths.</p>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="torquests.TorConfig" class="doc doc-heading">
+              <code class="highlight language-python"><span class="n">TorConfig</span><span class="p">(</span><span class="n">connect_timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">60.0</span><span class="p">,</span> <span class="n">read_timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mf">60.0</span><span class="p">,</span> <span class="n">circuit_build_attempts</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">cache_dir</span><span class="p">:</span> <span class="n">Path</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#torquests.TorConfig" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+    <div class="doc doc-contents first">
+
+
+
+        <p>Tunable parameters for a :class:<code>~torquests._client.torclient.TorClient</code>.</p>
+
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="transport">Transport<a class="headerlink" href="#transport" title="Permanent link">&para;</a></h2>
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="torquests.TorAdapter" class="doc doc-heading">
+              <code class="highlight language-python"><span class="n">TorAdapter</span><span class="p">(</span><span class="n">connector</span><span class="p">:</span> <span class="n">TorConnector</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">isolation</span><span class="p">:</span> <span class="n">IsolationPolicy</span> <span class="o">=</span> <span class="s1">&#39;host&#39;</span><span class="p">,</span> <span class="n">owns_connector</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">isolation_token</span><span class="p">:</span> <span class="nb">object</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span></code>
+
+<a href="#torquests.TorAdapter" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+    <div class="doc doc-contents first">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="requests.adapters.BaseAdapter">BaseAdapter</span></code></p>
+
+
+
+        <p>Routes <code>requests</code> traffic over Tor.</p>
+
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h2 id="torquests.IsolationPolicy" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">IsolationPolicy</span> <span class="o">=</span> <span class="n">Literal</span><span class="p">[</span><span class="s1">&#39;session&#39;</span><span class="p">,</span> <span class="s1">&#39;host&#39;</span><span class="p">,</span> <span class="s1">&#39;request&#39;</span><span class="p">]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+<a href="#torquests.IsolationPolicy" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+    <div class="doc doc-contents first">
+
+    </div>
+
+</div><h2 id="stealth">Stealth<a class="headerlink" href="#stealth" title="Permanent link">&para;</a></h2>
+
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="torquests.stealth_session" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">stealth_session</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">impersonate</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">DEFAULT_IMPERSONATE</span><span class="p">,</span> <span class="n">tor</span><span class="p">:</span> <span class="n">TorConnector</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">requests</span><span class="o">.</span><span class="n">Session</span></code>
+
+<a href="#torquests.stealth_session" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+    <div class="doc doc-contents first">
+
+        <p>Return a :class:<code>requests.Session</code> that speaks a browser's TLS over Tor.</p>
+<p>Requests go out with curl_cffi's impersonated TLS/HTTP fingerprint (Tor
+Browser by default) tunneled through torquests' Tor circuits, and come back
+as ordinary :class:<code>requests.Response</code> objects. Pass <code>impersonate</code> to choose
+another profile (for example <code>"firefox"</code> or <code>"chrome"</code>), or <code>tor</code> to
+reuse an existing client. Circuits are isolated per destination host. Needs
+the <code>torquests[stealth]</code> extra.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="torquests.StealthTorAdapter" class="doc doc-heading">
+              <code class="highlight language-python"><span class="n">StealthTorAdapter</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">impersonate</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">DEFAULT_IMPERSONATE</span><span class="p">,</span> <span class="n">tor</span><span class="p">:</span> <span class="n">TorConnector</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">connect_timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">60.0</span><span class="p">)</span></code>
+
+<a href="#torquests.StealthTorAdapter" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+    <div class="doc doc-contents first">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="requests.adapters.BaseAdapter">BaseAdapter</span></code></p>
+
+
+
+        <p>A <code>requests</code> adapter that speaks a browser's TLS fingerprint over Tor.</p>
+<p>Each request is issued with curl_cffi (impersonating <code>impersonate</code>) through
+an in-process SOCKS5-over-Tor proxy on <code>127.0.0.1</code>, then repackaged as a
+:class:<code>requests.Response</code>. Names, <code>.onion</code> included, resolve at the exit
+(<code>socks5h</code>), so nothing reaches the local resolver. The proxy isolates
+circuits per destination host.</p>
+
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="exceptions">Exceptions<a class="headerlink" href="#exceptions" title="Permanent link">&para;</a></h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<h2 id="torquests.exceptions" class="doc doc-heading">
+            <code>exceptions</code>
+
+
+<a href="#torquests.exceptions" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents first">
+
+        <p>Exception hierarchy.</p>
+<p>Every Tor-specific error subclasses the marker :class:<code>TorError</code> <em>and</em> the
+matching <code>requests</code> exception, so code written against <code>requests</code> keeps
+working (<code>except requests.exceptions.ConnectionError</code>) while callers who want
+to distinguish Tor failures can catch :class:<code>TorError</code>. This mirrors how
+<code>requests</code> itself composes exceptions (for example <code>ConnectTimeout</code> is both a
+<code>ConnectionError</code> and a <code>Timeout</code>).</p>
+<p>This module imports only <code>requests</code>, so it sits outside the package's internal
+layering and may be raised from anywhere.</p>
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="torquests.exceptions.TorError" class="doc doc-heading">
+            <code>TorError</code>
+
+
+<a href="#torquests.exceptions.TorError" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="requests.exceptions.RequestException">RequestException</span></code></p>
+
+
+
+        <p>Base class for every error raised by torquests.</p>
+
+
+
+
+
+
+
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="torquests.exceptions.TorBootstrapError" class="doc doc-heading">
+            <code>TorBootstrapError</code>
+
+
+<a href="#torquests.exceptions.TorBootstrapError" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="TorError (torquests.exceptions.TorError)" href="#torquests.exceptions.TorError">TorError</a></code>, <code><span title="requests.exceptions.ConnectionError">ConnectionError</span></code></p>
+
+
+
+        <p>The client could not bootstrap a usable view of the Tor network.</p>
+
+
+
+
+
+
+
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="torquests.exceptions.ConsensusError" class="doc doc-heading">
+            <code>ConsensusError</code>
+
+
+<a href="#torquests.exceptions.ConsensusError" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="TorBootstrapError (torquests.exceptions.TorBootstrapError)" href="#torquests.exceptions.TorBootstrapError">TorBootstrapError</a></code></p>
+
+
+
+        <p>The network consensus could not be fetched, parsed, or verified.</p>
+
+
+
+
+
+
+
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="torquests.exceptions.DirectoryError" class="doc doc-heading">
+            <code>DirectoryError</code>
+
+
+<a href="#torquests.exceptions.DirectoryError" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="TorBootstrapError (torquests.exceptions.TorBootstrapError)" href="#torquests.exceptions.TorBootstrapError">TorBootstrapError</a></code></p>
+
+
+
+        <p>A directory document (microdescriptors, certificates) could not be fetched.</p>
+
+
+
+
+
+
+
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="torquests.exceptions.ChannelError" class="doc doc-heading">
+            <code>ChannelError</code>
+
+
+<a href="#torquests.exceptions.ChannelError" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="TorError (torquests.exceptions.TorError)" href="#torquests.exceptions.TorError">TorError</a></code>, <code><span title="requests.exceptions.ConnectionError">ConnectionError</span></code></p>
+
+
+
+        <p>The TLS link to a guard relay failed.</p>
+
+
+
+
+
+
+
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="torquests.exceptions.LinkAuthError" class="doc doc-heading">
+            <code>LinkAuthError</code>
+
+
+<a href="#torquests.exceptions.LinkAuthError" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="ChannelError (torquests.exceptions.ChannelError)" href="#torquests.exceptions.ChannelError">ChannelError</a></code></p>
+
+
+
+        <p>The guard's CERTS chain did not authenticate its identity.</p>
+
+
+
+
+
+
+
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="torquests.exceptions.CircuitError" class="doc doc-heading">
+            <code>CircuitError</code>
+
+
+<a href="#torquests.exceptions.CircuitError" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="TorError (torquests.exceptions.TorError)" href="#torquests.exceptions.TorError">TorError</a></code>, <code><span title="requests.exceptions.ConnectionError">ConnectionError</span></code></p>
+
+
+
+        <p>A circuit could not be built, extended, or used.</p>
+
+
+
+
+
+
+
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="torquests.exceptions.CircuitBuildTimeout" class="doc doc-heading">
+            <code>CircuitBuildTimeout</code>
+
+
+<a href="#torquests.exceptions.CircuitBuildTimeout" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="CircuitError (torquests.exceptions.CircuitError)" href="#torquests.exceptions.CircuitError">CircuitError</a></code>, <code><span title="requests.exceptions.ConnectTimeout">ConnectTimeout</span></code></p>
+
+
+
+        <p>A circuit did not finish building within the connect budget.</p>
+
+
+
+
+
+
+
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="torquests.exceptions.CircuitDestroyed" class="doc doc-heading">
+            <code>CircuitDestroyed</code>
+
+
+<a href="#torquests.exceptions.CircuitDestroyed" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="CircuitError (torquests.exceptions.CircuitError)" href="#torquests.exceptions.CircuitError">CircuitError</a></code></p>
+
+
+
+        <p>A DESTROY cell tore the circuit down while it was in use.</p>
+
+
+
+
+
+
+
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="torquests.exceptions.StreamError" class="doc doc-heading">
+            <code>StreamError</code>
+
+
+<a href="#torquests.exceptions.StreamError" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="TorError (torquests.exceptions.TorError)" href="#torquests.exceptions.TorError">TorError</a></code>, <code><span title="requests.exceptions.ConnectionError">ConnectionError</span></code></p>
+
+
+
+        <p>A stream failed abnormally.</p>
+
+
+
+
+
+
+
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="torquests.exceptions.StreamConnectError" class="doc doc-heading">
+            <code>StreamConnectError</code>
+
+
+<a href="#torquests.exceptions.StreamConnectError" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="StreamError (torquests.exceptions.StreamError)" href="#torquests.exceptions.StreamError">StreamError</a></code></p>
+
+
+
+        <p>RELAY_BEGIN was refused (exit policy, unreachable host, or no route).</p>
+
+
+
+
+
+
+
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="torquests.exceptions.StreamConnectTimeout" class="doc doc-heading">
+            <code>StreamConnectTimeout</code>
+
+
+<a href="#torquests.exceptions.StreamConnectTimeout" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="StreamError (torquests.exceptions.StreamError)" href="#torquests.exceptions.StreamError">StreamError</a></code>, <code><span title="requests.exceptions.ConnectTimeout">ConnectTimeout</span></code></p>
+
+
+
+        <p>RELAY_BEGIN did not produce a RELAY_CONNECTED within the connect budget.</p>
+<p>A timeout is a distinct failure from a refusal, so it maps to the <code>requests</code>
+<code>ConnectTimeout</code> (a <code>ConnectionError</code> and a <code>Timeout</code>) rather than to a
+bare :class:<code>StreamConnectError</code>.</p>
+
+
+
+
+
+
+
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="torquests.exceptions.TorReadTimeout" class="doc doc-heading">
+            <code>TorReadTimeout</code>
+
+
+<a href="#torquests.exceptions.TorReadTimeout" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="TorError (torquests.exceptions.TorError)" href="#torquests.exceptions.TorError">TorError</a></code>, <code><span title="requests.exceptions.ReadTimeout">ReadTimeout</span></code>, <code><span title="TimeoutError">TimeoutError</span></code></p>
+
+
+
+        <p>No data arrived on a stream within the read budget.</p>
+<p>It also subclasses :class:<code>TimeoutError</code> (<code>socket.timeout</code>) so that when it
+surfaces while urllib3 is reading a response body, urllib3's <code>_error_catcher</code>
+classifies it as a read timeout (<code>ReadTimeoutError</code>) exactly as it would a
+real socket timeout, which <code>requests</code> then maps to the same exception a
+vanilla body-read timeout produces instead of a <code>ChunkedEncodingError</code>.</p>
+
+
+
+
+
+
+
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="torquests.exceptions.TorTLSError" class="doc doc-heading">
+            <code>TorTLSError</code>
+
+
+<a href="#torquests.exceptions.TorTLSError" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="TorError (torquests.exceptions.TorError)" href="#torquests.exceptions.TorError">TorError</a></code>, <code><span title="requests.exceptions.SSLError">SSLError</span></code></p>
+
+
+
+        <p>The TLS handshake with the destination host failed.</p>
+<p>HTTPS-over-Tor runs the destination handshake in <code>TlsStreamSocket</code>. A failure
+there (a certificate that does not verify, a plaintext port answering the
+ClientHello, a protocol-version mismatch) raises a bare <code>ssl.SSLError</code>, which
+is <em>not</em> a <code>requests</code> exception. Wrapping it keeps the hierarchy's contract:
+a caller's <code>except requests.exceptions.SSLError</code> and <code>except TorError</code> both
+catch it, exactly as they would a direct <code>requests</code> HTTPS failure.</p>
+
+
+
+
+
+
+
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="torquests.exceptions.OnionServiceError" class="doc doc-heading">
+            <code>OnionServiceError</code>
+
+
+<a href="#torquests.exceptions.OnionServiceError" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="TorError (torquests.exceptions.TorError)" href="#torquests.exceptions.TorError">TorError</a></code>, <code><span title="requests.exceptions.ConnectionError">ConnectionError</span></code></p>
+
+
+
+        <p>A v3 onion-service connection failed.</p>
+
+
+
+
+
+
+
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="torquests.exceptions.DescriptorError" class="doc doc-heading">
+            <code>DescriptorError</code>
+
+
+<a href="#torquests.exceptions.DescriptorError" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="OnionServiceError (torquests.exceptions.OnionServiceError)" href="#torquests.exceptions.OnionServiceError">OnionServiceError</a></code></p>
+
+
+
+        <p>An onion-service descriptor could not be fetched, verified, or decrypted.</p>
+
+
+
+
+
+
+
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="torquests.exceptions.DescriptorNotFound" class="doc doc-heading">
+            <code>DescriptorNotFound</code>
+
+
+<a href="#torquests.exceptions.DescriptorNotFound" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="DescriptorError (torquests.exceptions.DescriptorError)" href="#torquests.exceptions.DescriptorError">DescriptorError</a></code></p>
+
+
+
+        <p>No responsible HSDir returned a descriptor for the address.</p>
+
+
+
+
+
+
+
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="torquests.exceptions.IntroductionError" class="doc doc-heading">
+            <code>IntroductionError</code>
+
+
+<a href="#torquests.exceptions.IntroductionError" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="OnionServiceError (torquests.exceptions.OnionServiceError)" href="#torquests.exceptions.OnionServiceError">OnionServiceError</a></code></p>
+
+
+
+        <p>The introduction step failed for every introduction point.</p>
+
+
+
+
+
+
+
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="torquests.exceptions.RendezvousError" class="doc doc-heading">
+            <code>RendezvousError</code>
+
+
+<a href="#torquests.exceptions.RendezvousError" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="OnionServiceError (torquests.exceptions.OnionServiceError)" href="#torquests.exceptions.OnionServiceError">OnionServiceError</a></code></p>
+
+
+
+        <p>The rendezvous step failed (no RENDEZVOUS2, or the handshake did not verify).</p>
+
+
+
+
+
+
+
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="torquests.exceptions.OnionClientAuthRequired" class="doc doc-heading">
+            <code>OnionClientAuthRequired</code>
+
+
+<a href="#torquests.exceptions.OnionClientAuthRequired" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="OnionServiceError (torquests.exceptions.OnionServiceError)" href="#torquests.exceptions.OnionServiceError">OnionServiceError</a></code></p>
+
+
+
+        <p>The descriptor is client-authorized and no matching key was supplied.</p>
+
+
+
+
+
+
+
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="torquests.exceptions.InvalidOnionAddress" class="doc doc-heading">
+            <code>InvalidOnionAddress</code>
+
+
+<a href="#torquests.exceptions.InvalidOnionAddress" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="TorError (torquests.exceptions.TorError)" href="#torquests.exceptions.TorError">TorError</a></code>, <code><span title="requests.exceptions.InvalidURL">InvalidURL</span></code></p>
+
+
+
+        <p>A <code>.onion</code> address failed length, version, checksum, or torsion validation.</p>
+
+
+
+
+
+
+
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="torquests.exceptions.ProxyUnsupportedError" class="doc doc-heading">
+            <code>ProxyUnsupportedError</code>
+
+
+<a href="#torquests.exceptions.ProxyUnsupportedError" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="TorError (torquests.exceptions.TorError)" href="#torquests.exceptions.TorError">TorError</a></code>, <code><span title="requests.exceptions.InvalidSchema">InvalidSchema</span></code></p>
+
+
+
+        <p>A <code>proxies</code> argument was passed to the Tor adapter; Tor is the transport.</p>
+
+
+
+
+
+
+
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="torquests.exceptions.OnionRedirectError" class="doc doc-heading">
+            <code>OnionRedirectError</code>
+
+
+<a href="#torquests.exceptions.OnionRedirectError" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="TorError (torquests.exceptions.TorError)" href="#torquests.exceptions.TorError">TorError</a></code></p>
+
+
+
+        <p>A :class:<code>~torquests.MixedSession</code> refused a redirect from an onion service
+to a clearnet host, which would have been fetched directly over the real IP.</p>
+
+
+
+
+
+
+
+
+
+    </div>
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../safety/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Safety">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Safety
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 Safwan Eljadi
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/SafwanLjd/torquests" target="_blank" rel="noopener" title="torquests on GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
