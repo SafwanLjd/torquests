@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from pathlib import Path
+
 import pytest
 
 from torquests._client.torclient import TorClient
@@ -16,6 +18,34 @@ def make_client(relay: FakeRelay) -> TorClient:
         path_provider=lambda host, port: relay.path(),
         transport_factory=lambda guard: transport,
     )
+
+
+def test_bootstrap_forwards_cache_dir_to_get_directory(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
+    """A client's config.cache_dir reaches get_directory, the middle of the chain."""
+    from torquests._client import bootstrap
+    from torquests._client.config import TorConfig
+
+    seen: dict[str, object] = {}
+
+    class _Stop(Exception):
+        pass
+
+    def fake_get_directory(*, timeout: float = 60.0, cache_dir: object = None) -> object:
+        seen["cache_dir"] = cache_dir
+        raise _Stop  # short-circuit before the live dir-tunnel machinery
+
+    monkeypatch.setattr(bootstrap, "get_directory", fake_get_directory)
+
+    with pytest.raises(_Stop):
+        TorClient.bootstrap(TorConfig(cache_dir=tmp_path))
+    assert seen["cache_dir"] == tmp_path
+
+    seen.clear()
+    with pytest.raises(_Stop):
+        TorClient.bootstrap()  # default config carries no cache_dir
+    assert seen["cache_dir"] is None
 
 
 def test_same_isolation_key_reuses_the_circuit() -> None:

@@ -169,7 +169,8 @@ class TorClient:
         """
         from .bootstrap import get_directory
 
-        directory = get_directory(timeout=timeout)
+        config = config or TorConfig()
+        directory = get_directory(timeout=timeout, cache_dir=config.cache_dir)
         client = cls(
             config,
             path_provider=directory.path_provider,

@@ -10,6 +10,7 @@ import random
 import urllib.request
 import zlib
 from datetime import datetime, timezone
+from pathlib import Path
 
 import pytest
 from cryptography.hazmat.primitives import hashes, serialization
@@ -23,6 +24,7 @@ from torquests._dir.consensus import (
     verify_consensus,
     verify_document_signature,
 )
+from torquests._dir.consensus_store import ConsensusStore
 from torquests._dir.dirhttp import dir_get
 from torquests._dir.guards import GuardManager
 from torquests._dir.keycerts import KeyCertificate, parse_key_certificates
@@ -767,7 +769,7 @@ def test_get_directory_rebootstraps_when_the_consensus_expires(
     produced = [_Directory(live=False), _Directory(live=True)]
     builds: list[int] = []
 
-    def fake_bootstrap(*, timeout: float = 60.0) -> object:
+    def fake_bootstrap(*, timeout: float = 60.0, cache_dir: object = None) -> object:
         directory = produced[len(builds)]
         builds.append(1)
         return directory
@@ -783,3 +785,87 @@ def test_get_directory_rebootstraps_when_the_consensus_expires(
     assert second is produced[1]
     assert third is produced[1]
     assert len(builds) == 2
+
+
+def test_get_directory_forwards_cache_dir_to_bootstrap(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
+    """The cache directory set on a client reaches the bootstrap that reads it."""
+    seen: dict[str, object] = {}
+
+    def fake_bootstrap(*, timeout: float = 60.0, cache_dir: object = None) -> object:
+        seen["cache_dir"] = cache_dir
+        return object()
+
+    monkeypatch.setattr(bootstrap, "_cached_directory", None)
+    monkeypatch.setattr(bootstrap, "bootstrap", fake_bootstrap)
+    bootstrap.get_directory(cache_dir=tmp_path)
+    assert seen["cache_dir"] == tmp_path
+
+
+def _offline_cache_bootstrap(
+    network: SyntheticDirectory,
+    monkeypatch: pytest.MonkeyPatch,
+    consensus_fetches: list[str],
+) -> None:
+    """Wire bootstrap() to run fully offline against the synthetic network at NOW_LIVE.
+
+    Key certificates are stubbed to the synthetic authorities' own keys, the mirror
+    fetch serves the signed consensus (recording only the consensus fetches), and the
+    clock is pinned inside the fixture's validity window so verification passes.
+    """
+    certs = [KeyCertificate(a.v3ident, a.signing_key_pem) for a in network.authorities]
+    # bootstrap() imports parse_key_certificates lazily, so patch it on its source
+    # module; the call-time `from .._dir.keycerts import ...` then picks up the stub.
+    monkeypatch.setattr("torquests._dir.keycerts.parse_key_certificates", lambda text: certs)
+
+    def fake_fetch(path: str, mirrors: object, timeout: float, rng: random.Random) -> str:
+        if "consensus" in path:
+            consensus_fetches.append(path)
+            return network.consensus_text
+        return "stub key-certificate document"
+
+    monkeypatch.setattr(bootstrap, "_fetch", fake_fetch)
+
+    class _FrozenClock:
+        @staticmethod
+        def now(tz: object = None) -> datetime:
+            return NOW_LIVE
+
+    monkeypatch.setattr(bootstrap, "datetime", _FrozenClock)
+
+
+def test_bootstrap_writes_then_reuses_the_consensus_cache(
+    network: SyntheticDirectory, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    fetches: list[str] = []
+    _offline_cache_bootstrap(network, monkeypatch, fetches)
+
+    first = bootstrap.bootstrap(authorities=network.authorities, cache_dir=tmp_path)
+    assert first.consensus.valid_after == VALID_AFTER
+    assert (tmp_path / "cached-microdesc-consensus").exists()
+    assert len(fetches) == 1  # a cold start fetches the consensus once
+
+    second = bootstrap.bootstrap(authorities=network.authorities, cache_dir=tmp_path)
+    assert second.consensus.valid_after == VALID_AFTER
+    assert len(fetches) == 1  # a warm start reuses the cached consensus, no refetch
+
+
+def test_bootstrap_survives_an_unwritable_cache(
+    network: SyntheticDirectory,
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    caplog: pytest.LogCaptureFixture,
+) -> None:
+    fetches: list[str] = []
+    _offline_cache_bootstrap(network, monkeypatch, fetches)
+
+    def unwritable(self: ConsensusStore, consensus_text: str) -> None:
+        raise OSError("read-only file system")
+
+    monkeypatch.setattr(ConsensusStore, "save", unwritable)
+    with caplog.at_level("WARNING"):
+        directory = bootstrap.bootstrap(authorities=network.authorities, cache_dir=tmp_path)
+    # The cache write failed, but the bootstrap itself did not: it warns and carries on.
+    assert directory.consensus.valid_after == VALID_AFTER
+    assert any("consensus cache" in record.message for record in caplog.records)

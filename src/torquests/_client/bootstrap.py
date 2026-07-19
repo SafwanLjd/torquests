@@ -46,6 +46,8 @@ from ..exceptions import (
 DirTunnel = Callable[[str], str]
 
 if TYPE_CHECKING:
+    from pathlib import Path
+
     from .._dir.keycerts import KeyCertificate
 
 _MD_BATCH = 50
@@ -507,10 +509,19 @@ def bootstrap(
     authorities: Sequence[DirectoryAuthority] | None = None,
     timeout: float = 60.0,
     rng: random.Random | None = None,
+    cache_dir: Path | None = None,
 ) -> LiveDirectory:
-    """Fetch and verify the consensus, returning a live directory."""
+    """Fetch and verify the consensus, returning a live directory.
+
+    With ``cache_dir`` set, a consensus still live on disk is reused in place of
+    the network fetch, and a freshly fetched one is written back for the next
+    process. Caching is best-effort: a cache that is missing, stale, or corrupt
+    falls through to the network, and a directory that cannot be written only
+    logs a warning.
+    """
     from .._dir.authorities import DEFAULT_AUTHORITIES
     from .._dir.consensus import verify_consensus
+    from .._dir.consensus_store import ConsensusStore
     from .._dir.keycerts import parse_key_certificates
 
     resolved_rng: random.Random = rng if rng is not None else random.SystemRandom()
@@ -530,12 +541,22 @@ def bootstrap(
     # lower the quorum.
     authorities_with_keys = _authorities_with_keys(authority_set, certs)
 
-    consensus_text = _fetch(
-        "/tor/status-vote/current/consensus-microdesc", mirrors, timeout, resolved_rng
-    )
-    consensus = verify_consensus(
-        consensus_text, authorities_with_keys, now=datetime.now(timezone.utc)
-    )
+    # A cached consensus is re-verified against those same authorities at the same
+    # instant, so it is trusted no more than a fresh fetch; anything unusable
+    # (absent, expired, or tampered) falls through to the network fetch below.
+    now = datetime.now(timezone.utc)
+    store = ConsensusStore(cache_dir) if cache_dir is not None else None
+    consensus = store.load(authorities_with_keys, now=now) if store is not None else None
+    if consensus is None:
+        consensus_text = _fetch(
+            "/tor/status-vote/current/consensus-microdesc", mirrors, timeout, resolved_rng
+        )
+        consensus = verify_consensus(consensus_text, authorities_with_keys, now=now)
+        if store is not None:
+            try:
+                store.save(consensus_text)
+            except OSError as exc:
+                logger.warning("could not write the consensus cache under %s: %s", cache_dir, exc)
     return LiveDirectory(consensus, mirrors, timeout=timeout, rng=resolved_rng)
 
 
@@ -543,18 +564,21 @@ _cache_lock = threading.Lock()
 _cached_directory: LiveDirectory | None = None
 
 
-def get_directory(*, timeout: float = 60.0, refresh: bool = False) -> LiveDirectory:
+def get_directory(
+    *, timeout: float = 60.0, refresh: bool = False, cache_dir: Path | None = None
+) -> LiveDirectory:
     """Return a process-global live directory, bootstrapping once and reusing it.
 
     Re-bootstraps when ``refresh`` is set or the cached consensus is no longer live,
     so a client created after the consensus expires (a fresh session, or the module
     verbs) selects paths from a current network view rather than a stale one.
+    ``cache_dir`` is forwarded to :func:`bootstrap` for the on-disk consensus cache.
     """
     global _cached_directory
     with _cache_lock:
         cached = _cached_directory
         stale = cached is not None and not cached.consensus.is_live(datetime.now(timezone.utc))
         if cached is None or refresh or stale:
-            cached = bootstrap(timeout=timeout)
+            cached = bootstrap(timeout=timeout, cache_dir=cache_dir)
             _cached_directory = cached
         return cached
