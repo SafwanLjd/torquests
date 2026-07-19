@@ -26,6 +26,10 @@ print(r.json())        # {"IsTor": true, "IP": "185.220.101.4"}
 
 One line built a circuit, ran an ntor handshake at each hop, and carried your HTTP over it.
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/SafwanLjd/torquests/gh-pages/assets/torquests-onion.gif" alt="Fetching a v3 onion service over Tor with torquests" width="820">
+</p>
+
 ## Why torquests
 
 - **v3 onion services.** Fetch a `.onion` the way you fetch anything else: blinded-key
@@ -115,6 +119,9 @@ The [documentation](https://safwanljd.github.io/torquests/) covers the rest:
   traffic over Tor, with names resolved remotely, never on your machine.
 - **[Mixed routing](https://safwanljd.github.io/torquests/onion-services/).** `MixedSession`
   sends `.onion` over Tor and lets clearnet go out directly.
+- **[Consensus caching](https://safwanljd.github.io/torquests/quickstart/#caching-the-consensus).**
+  Point `TorConfig(cache_dir=...)` at a directory to reuse a verified consensus across
+  processes and skip the bootstrap's consensus fetch on a warm start.
 
 ## Safety
 

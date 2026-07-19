@@ -42,6 +42,30 @@ request starts from a clean, uncorrelated state.
         s.get("https://example.com")
     ```
 
+## Caching the consensus
+
+The first request in a process bootstraps a verified consensus, which takes a few
+seconds. To carry that work across processes, point a client at a cache directory. The
+client writes the verified consensus there, and a later run reuses it in place of the
+network consensus fetch while it stays live.
+
+```python
+from pathlib import Path
+
+from torquests import Session, TorClient, TorConfig
+
+config = TorConfig(cache_dir=Path.home() / ".cache" / "torquests")
+client = TorClient.bootstrap(config)
+
+with Session(tor=client) as s:
+    s.get("https://example.com")
+```
+
+The file holds only the public, authority-signed consensus, and every load re-verifies
+it, so the client discards an expired or tampered cache and fetches a fresh one from the
+network. Leaving `cache_dir` unset (the default) keeps all directory state in memory and
+writes nothing to disk.
+
 ## Streaming
 
 Large bodies stream without buffering the whole response in memory, and Tor's flow control

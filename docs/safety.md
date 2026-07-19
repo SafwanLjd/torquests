@@ -40,6 +40,15 @@ decode. The **TLS** handshake still reads as Python, and pairing a Firefox `User
 it is a mismatch a server can key on, more distinctive than either alone. To blend the TLS
 layer too, use stealth mode or Tor Browser.
 
+## On-disk state
+
+By default torquests keeps its directory state in memory and writes nothing to disk.
+`TorConfig(cache_dir=...)` opts into an on-disk consensus cache: a single owner-only
+`cached-microdesc-consensus` file. Its contents are public, authority-signed data that
+reveals nothing about your traffic, but the file's presence and timestamp are a local
+trace that Tor ran. Leave `cache_dir` unset on an amnesic or shared host where that
+trace matters.
+
 ## Reporting a vulnerability
 
 Report suspected anonymity or cryptographic defects privately through a GitHub Security
